@@ -1,0 +1,124 @@
+.admin-events-page,
+.calendar-wrapper {
+  --event-card-bg: color-mix(in srgb, var(--primary, #7132a0) 13%, #302923);
+  --event-card-hover: color-mix(in srgb, var(--primary, #7132a0) 22%, #393029);
+  --event-card-border: rgba(255, 255, 255, 0.15);
+  --event-card-text: #fff5f0;
+  --event-card-muted: #d4c5be;
+}
+
+.calendar-wrapper .calendar-event-card,
+.admin-events-page .calendar-event-card {
+  background: var(--event-card-bg) !important;
+  background-image: none !important;
+  color: var(--event-card-text) !important;
+  border: 1px solid var(--event-card-border) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none;
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+}
+
+.calendar-wrapper .calendar-event-card:hover,
+.calendar-wrapper .calendar-event-card:focus-within,
+.admin-events-page .calendar-event-card:hover,
+.admin-events-page .calendar-event-card:focus-within {
+  background: var(--event-card-hover) !important;
+  background-image: none !important;
+  color: var(--event-card-text) !important;
+  border-color: var(--accent, #c99a58) !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.calendar-wrapper .calendar-event-card::before,
+.calendar-wrapper .calendar-event-card::after {
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.calendar-wrapper .calendar-event-card:hover::before,
+.calendar-wrapper .calendar-event-card:hover::after {
+  opacity: 0 !important;
+}
+
+.calendar-wrapper .calendar-event-content,
+.calendar-wrapper .calendar-event-content h4,
+.calendar-wrapper .calendar-event-time strong {
+  color: var(--event-card-text) !important;
+}
+
+.calendar-wrapper .calendar-event-content h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.calendar-wrapper .calendar-event-content p,
+.calendar-wrapper .calendar-event-content small,
+.calendar-wrapper .calendar-event-time span {
+  color: var(--event-card-muted) !important;
+  font-weight: 400;
+}
+
+.calendar-wrapper .calendar-event-card:hover h4,
+.calendar-wrapper .calendar-event-card:hover p,
+.calendar-wrapper .calendar-event-card:hover small,
+.calendar-wrapper .calendar-event-card:hover strong,
+.calendar-wrapper .calendar-event-card:hover .calendar-event-time span {
+  color: var(--event-card-text) !important;
+}
+
+.calendar-wrapper .calendar-event-time {
+  background: rgba(255, 255, 255, 0.045) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
+}
+
+.calendar-wrapper .calendar-event-category {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--event-card-text) !important;
+  border-color: var(--event-card-border) !important;
+  font-weight: 500;
+}
+
+.calendar-wrapper .calendar-event-card:hover .calendar-event-category {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--event-card-text) !important;
+}
+
+.calendar-wrapper .calendar-event-action {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--event-card-text) !important;
+  border: 1px solid var(--event-card-border) !important;
+  box-shadow: none !important;
+}
+
+.calendar-wrapper .calendar-event-action:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: var(--accent, #c99a58) !important;
+  color: #ffffff !important;
+  transform: none !important;
+}
+
+@media (max-width: 768px) {
+  .calendar-wrapper .calendar-event-card {
+    border-radius: 11px;
+  }
+
+  .calendar-wrapper .calendar-event-card:hover {
+    transform: none !important;
+  }
+
+  .calendar-wrapper .calendar-event-content h4 {
+    font-size: 0.84rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendar-wrapper .calendar-event-card {
+    transition: none !important;
+  }
+}

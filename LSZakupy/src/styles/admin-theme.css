@@ -1,0 +1,1183 @@
+.admin-page {
+  --admin-bg: var(--background, var(--bg-primary));
+  --admin-surface: var(--surface-soft, rgba(255, 255, 255, 0.08));
+  --admin-surface-hover: var(--surface-hover, rgba(255, 255, 255, 0.14));
+  --admin-border: var(--border-color, rgba(255, 255, 255, 0.12));
+  --admin-text: var(--text, #fff);
+  --admin-muted: var(--text-secondary, rgba(255, 255, 255, 0.7));
+  --admin-accent: var(--accent, #ff6b8a);
+  --admin-success: var(--success, #4ade80);
+  --admin-warning: var(--warning, #facc15);
+  --admin-danger: var(--danger, #fb7185);
+  --admin-info: var(--info, #60a5fa);
+  --admin-purple: #a78bfa;
+  --admin-shadow: var(--shadow-medium, 0 25px 70px rgba(0, 0, 0, 0.25));
+  --admin-radius: 28px;
+  --admin-blur: 22px;
+  --admin-transition: 0.3s ease;
+
+  color: var(--admin-text);
+}
+
+.admin-page,
+.admin-page * {
+  box-sizing: border-box;
+}
+
+.admin-page h1,
+.admin-page h2,
+.admin-page h3,
+.admin-page h4 {
+  color: var(--admin-text);
+}
+
+.admin-page p,
+.admin-page small {
+  color: var(--admin-muted);
+}
+
+.admin-page button {
+  font-family: inherit;
+  transition: transform var(--admin-transition),
+    background var(--admin-transition), border-color var(--admin-transition),
+    box-shadow var(--admin-transition);
+}
+
+.admin-page button:hover:not(:disabled) {
+  transform: translateY(-3px);
+}
+
+.admin-page button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.admin-page input,
+.admin-page textarea,
+.admin-page select {
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  font-family: inherit;
+  backdrop-filter: blur(var(--admin-blur));
+  -webkit-backdrop-filter: blur(var(--admin-blur));
+}
+
+.admin-page input::placeholder,
+.admin-page textarea::placeholder {
+  color: var(--admin-muted);
+}
+
+.admin-page input:focus,
+.admin-page textarea:focus,
+.admin-page select:focus {
+  outline: none;
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--admin-accent) 20%, transparent);
+}
+
+.admin-page .glass,
+.admin-page .dashboard-panel,
+.admin-page .dashboard-card,
+.admin-page .glass-section,
+.admin-page .calendar-wrapper,
+.admin-page .event-card,
+.admin-page .notification-card,
+.admin-page .shopping-card,
+.admin-page .stat-card {
+  position: relative;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  backdrop-filter: blur(var(--admin-blur));
+  -webkit-backdrop-filter: blur(var(--admin-blur));
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-page .glass,
+.admin-page .dashboard-panel,
+.admin-page .dashboard-card,
+.admin-page .glass-section {
+  border-radius: var(--admin-radius);
+}
+
+.admin-page .glass::before,
+.admin-page .dashboard-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--admin-text) 8%, transparent),
+    transparent 45%
+  );
+  pointer-events: none;
+}
+
+.admin-page .primary,
+.admin-page .save-event-button,
+.admin-page .shopping-button,
+.admin-page .notifications-button {
+  border: none;
+  border-radius: 18px;
+  background: var(--admin-accent);
+  color: var(--button-text, #fff);
+  box-shadow: 0 14px 35px
+    color-mix(in srgb, var(--admin-accent) 25%, transparent);
+}
+
+.admin-page .secondary,
+.admin-page .back-button {
+  border: 1px solid var(--admin-border);
+  border-radius: 18px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+}
+
+.admin-page .sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 270px;
+  gap: 22px;
+  width: 270px;
+  min-width: 270px;
+  height: 100vh;
+  min-height: 0;
+  padding: 22px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-page .sidebar-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.admin-page .sidebar-logo {
+  width: 82px;
+  height: 82px;
+  padding: 8px;
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-page .sidebar-top h2 {
+  margin: 0;
+  color: var(--admin-text);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.admin-page .sidebar-top p {
+  margin: 0;
+  color: var(--admin-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.admin-page .admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.admin-page .sidebar-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 54px;
+  padding: 0 15px;
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+  border-radius: 18px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  cursor: pointer;
+}
+
+.admin-page .sidebar-button:hover {
+  border-color: var(--admin-accent);
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .sidebar-button.active {
+  border-color: var(--admin-accent);
+  background: var(--admin-surface-hover);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12),
+    0 0 18px color-mix(in srgb, var(--admin-accent) 20%, transparent);
+}
+
+.admin-page .sidebar-button-main {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.admin-page .sidebar-button-main strong {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--admin-text);
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.admin-page .sidebar-button-main small {
+  color: var(--admin-muted);
+  font-size: 0.72rem;
+}
+
+.admin-page .sidebar-icon {
+  display: flex;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .sidebar-counter {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-surface-hover);
+  color: var(--admin-text);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.admin-page .sidebar-button.active .sidebar-counter {
+  border-color: var(--admin-accent);
+  color: var(--admin-text);
+}
+
+.admin-page .menu-indicator {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--admin-accent);
+  box-shadow: 0 0 18px var(--admin-accent);
+}
+
+.admin-page .sidebar-button.active .sidebar-icon {
+  background: color-mix(in srgb, var(--admin-accent) 22%, transparent);
+  color: var(--admin-text);
+}
+
+.admin-page .sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.admin-page .return-button,
+.admin-page .logout-button {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-page .return-button {
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  color: var(--admin-text);
+}
+
+.admin-page .logout-button {
+  border: none;
+  background: var(--admin-accent);
+  color: var(--button-text, #fff);
+  box-shadow: 0 12px 30px
+    color-mix(in srgb, var(--admin-accent) 30%, transparent);
+}
+
+.admin-page .calendar-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+  padding: 22px;
+  overflow: hidden;
+  border-radius: var(--admin-radius);
+}
+
+.admin-page .calendar-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--admin-text) 8%, transparent),
+    transparent 45%
+  );
+  pointer-events: none;
+}
+
+.admin-page .calendar-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.admin-page .calendar-header h2 {
+  flex: 1;
+  margin: 0;
+  color: var(--admin-text);
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.admin-page .calendar-navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-page .calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  cursor: pointer;
+}
+
+.admin-page .calendar-nav:hover {
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .calendar-today {
+  min-height: 42px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 14px;
+  background: var(--admin-accent);
+  color: var(--button-text, #fff);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-page .react-calendar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--admin-text);
+  font-family: inherit;
+}
+
+.admin-page .react-calendar__month-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-page .react-calendar__month-view__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.admin-page .react-calendar__month-view__weekdays__weekday {
+  min-width: 0;
+  padding: 8px 2px;
+  color: var(--admin-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.admin-page .react-calendar__month-view__weekdays__weekday abbr {
+  border: 0;
+  text-decoration: none;
+}
+
+.admin-page .react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.admin-page .react-calendar__tile {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 0;
+  height: 72px;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.admin-page .react-calendar__tile:hover {
+  transform: translateY(-3px);
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .react-calendar__tile--now {
+  border-color: var(--admin-accent);
+  box-shadow: inset 0 0 0 1px var(--admin-accent);
+}
+
+.admin-page .react-calendar__tile--active {
+  border-color: var(--admin-accent) !important;
+  background: var(--admin-accent) !important;
+  color: var(--button-text, #fff) !important;
+  box-shadow: 0 15px 35px
+    color-mix(in srgb, var(--admin-accent) 35%, transparent);
+}
+
+.admin-page .calendar-event-dot {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--admin-accent);
+  box-shadow: 0 0 12px var(--admin-accent);
+  transform: translateX(-50%);
+}
+
+.admin-page .calendar-event-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  display: flex;
+  gap: 4px;
+  transform: translateX(-50%);
+}
+
+.admin-page .calendar-event-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--admin-accent);
+}
+
+.admin-page .calendar-more-events {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 3px 7px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-surface-hover);
+  color: var(--admin-text);
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+
+.admin-page .calendar-day-chip {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  max-width: 70%;
+  padding: 3px 7px;
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-surface-hover);
+  color: var(--admin-text);
+  font-size: 0.6rem;
+  font-weight: 800;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.admin-page .calendar-events {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-page .calendar-events-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-page .calendar-events-header h3 {
+  margin: 0;
+  color: var(--admin-text);
+  font-weight: 900;
+}
+
+.admin-page .calendar-events-header p {
+  color: var(--admin-muted);
+}
+
+.admin-page .calendar-events-count {
+  padding: 6px 12px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-surface);
+  color: var(--admin-accent);
+  font-weight: 900;
+}
+
+.admin-page .calendar-event-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--admin-border);
+  border-radius: 18px;
+  background: var(--admin-surface);
+  transition: transform 0.25s ease, background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.admin-page .calendar-event-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--admin-accent);
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .calendar-event-bar {
+  flex: 0 0 4px;
+  width: 4px;
+  align-self: stretch;
+  border-radius: 999px;
+  background: var(--admin-accent);
+}
+
+.admin-page .calendar-event-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 65px;
+  padding: 8px;
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .calendar-event-time strong {
+  color: var(--admin-text);
+}
+
+.admin-page .calendar-event-time span {
+  color: var(--admin-muted);
+  font-size: 0.65rem;
+}
+
+.admin-page .calendar-event-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.admin-page .calendar-event-content h4 {
+  margin: 0;
+  color: var(--admin-text);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.admin-page .calendar-event-content p {
+  margin: 0;
+  color: var(--admin-muted);
+  overflow-wrap: anywhere;
+}
+
+.admin-page .calendar-event-category {
+  width: max-content;
+  max-width: 100%;
+  padding: 4px 9px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-surface-hover);
+  color: var(--admin-accent);
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+
+.admin-page .calendar-event-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.admin-page .calendar-event-action {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  cursor: pointer;
+}
+
+.admin-page .calendar-event-action:hover {
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .calendar-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 45px 20px;
+  border: 1px dashed var(--admin-border);
+  border-radius: 24px;
+  background: var(--admin-surface);
+  text-align: center;
+}
+
+.admin-page .calendar-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--admin-border);
+  border-radius: 50%;
+  background: var(--admin-surface-hover);
+  font-size: 1.6rem;
+}
+
+.admin-page .dashboard-header {
+  padding: 32px;
+  border: 1px solid var(--admin-border);
+  border-radius: 32px;
+  background: var(--admin-surface);
+  backdrop-filter: blur(var(--admin-blur));
+  -webkit-backdrop-filter: blur(var(--admin-blur));
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-page .dashboard-header h1 {
+  margin: 0;
+  color: var(--admin-text);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.admin-page .dashboard-description {
+  max-width: 700px;
+  color: var(--admin-muted);
+  line-height: 1.7;
+}
+
+.admin-page .stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-height: 160px;
+  padding: 26px;
+  border-radius: 24px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-page .stat-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--admin-accent);
+}
+
+.admin-page .stat-number {
+  color: var(--admin-text);
+  font-size: 2.4rem;
+  font-weight: 900;
+}
+
+.admin-page .stat-label {
+  color: var(--admin-muted);
+  font-weight: 700;
+}
+
+.admin-page .shopping-card,
+.admin-page .notification-card,
+.admin-page .event-card {
+  border-radius: 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease,
+    background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.admin-page .shopping-card,
+.admin-page .notification-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.admin-page .event-card {
+  padding: 22px;
+  overflow: hidden;
+}
+
+.admin-page .shopping-card:hover,
+.admin-page .notification-card:hover,
+.admin-page .event-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--admin-accent);
+}
+
+.admin-page .shopping-card h3,
+.admin-page .notification-card h3,
+.admin-page .event-card h3 {
+  color: var(--admin-text);
+  font-weight: 900;
+}
+
+.admin-page .shopping-card p,
+.admin-page .notification-card p,
+.admin-page .event-card p {
+  color: var(--admin-muted);
+  line-height: 1.6;
+}
+
+.admin-page .shopping-meta,
+.admin-page .notification-meta,
+.admin-page .event-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-surface-hover);
+  color: var(--admin-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.admin-page .shopping-actions button,
+.admin-page .notification-action,
+.admin-page .event-action {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  cursor: pointer;
+}
+
+.admin-page .shopping-actions button:hover,
+.admin-page .notification-action:hover,
+.admin-page .event-action:hover {
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .empty-admin-box,
+.admin-page .empty-state,
+.admin-page .event-empty,
+.admin-page .notifications-empty,
+.admin-page .shopping-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 250px;
+  padding: 40px;
+  border: 1px dashed var(--admin-border);
+  border-radius: 28px;
+  background: var(--admin-surface);
+  text-align: center;
+}
+
+.admin-page .empty-state-icon,
+.admin-page .event-empty-icon,
+.admin-page .notifications-empty-icon,
+.admin-page .shopping-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  border: 1px solid var(--admin-border);
+  border-radius: 50%;
+  background: var(--admin-surface-hover);
+  font-size: 2rem;
+}
+
+.admin-page .badge,
+.admin-page .chip,
+.admin-page .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-surface-hover);
+  color: var(--admin-accent);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.admin-page .success {
+  color: var(--admin-success);
+}
+
+.admin-page .warning {
+  color: var(--admin-warning);
+}
+
+.admin-page .danger {
+  color: var(--admin-danger);
+}
+
+.admin-page .info {
+  color: var(--admin-info);
+}
+
+.admin-page .purple {
+  color: var(--admin-purple);
+}
+
+.admin-page ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-page ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-page ::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--admin-border);
+}
+
+.admin-page :focus-visible {
+  outline: 2px solid var(--admin-accent);
+  outline-offset: 2px;
+}
+
+.admin-page .dashboard-header,
+.admin-page .calendar-wrapper,
+.admin-page .shopping-card,
+.admin-page .notification-card,
+.admin-page .event-card,
+.admin-page .stat-card {
+  animation: adminFade 0.35s ease both;
+}
+
+.admin-page .shopping-card.selected {
+  border-color: var(--admin-accent);
+  background: color-mix(in srgb, var(--admin-accent) 10%, var(--admin-surface));
+  box-shadow: 0 0 25px color-mix(in srgb, var(--admin-accent) 20%, transparent);
+}
+
+.admin-page .shopping-select {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  accent-color: var(--admin-accent);
+  cursor: pointer;
+}
+
+.admin-page .completed-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-page .completed-actions button {
+  min-height: 44px;
+}
+
+.admin-page .admin-completed-list .search-input {
+  margin-top: 18px;
+  margin-bottom: 20px;
+}
+
+.admin-page .completed-months {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.admin-page .shopping-category {
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-page .shopping-category-header {
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+}
+
+.admin-page .shopping-category-header:hover {
+  background: var(--admin-surface-hover);
+}
+
+.admin-page .month-select {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--admin-accent);
+  cursor: pointer;
+}
+
+.admin-page .month-select.partial {
+  opacity: 0.7;
+}
+
+@keyframes adminFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1200px) {
+  .admin-page .sidebar {
+    flex-basis: 240px;
+    width: 240px;
+    min-width: 240px;
+  }
+
+  .admin-page .dashboard-header {
+    padding: 24px;
+  }
+
+  .admin-page .stat-card {
+    min-height: 140px;
+  }
+}
+
+@media (max-width: 980px) {
+  .admin-page .sidebar {
+    flex-basis: auto;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    overflow: visible;
+    border-right: none;
+    border-bottom: 1px solid var(--admin-border);
+  }
+
+  .admin-page .admin-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-page .sidebar-footer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-page .sidebar {
+    padding: 16px;
+  }
+
+  .admin-page .admin-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-page .sidebar-button {
+    min-height: 48px;
+  }
+
+  .admin-page .dashboard-header {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .admin-page .calendar-wrapper {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .admin-page .calendar-header {
+    flex-wrap: wrap;
+  }
+
+  .admin-page .calendar-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .admin-page .react-calendar__tile {
+    height: 52px;
+    padding: 7px;
+    font-size: 0.8rem;
+  }
+
+  .admin-page .calendar-event-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-page .calendar-event-bar {
+    width: 100%;
+    height: 4px;
+    flex-basis: 4px;
+  }
+
+  .admin-page .calendar-event-actions {
+    justify-content: flex-end;
+  }
+
+  .admin-page .completed-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .admin-page .completed-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-page .sidebar {
+    padding: 14px;
+  }
+
+  .admin-page .sidebar-logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .admin-page .sidebar-footer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-page .dashboard-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .admin-page .calendar-wrapper {
+    padding: 12px;
+  }
+
+  .admin-page .calendar-navigation {
+    gap: 6px;
+  }
+
+  .admin-page .calendar-nav {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .admin-page .calendar-today {
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 0.75rem;
+  }
+
+  .admin-page .react-calendar__month-view__weekdays,
+  .admin-page .react-calendar__month-view__days {
+    gap: 4px;
+  }
+
+  .admin-page .react-calendar__tile {
+    height: 42px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 0.72rem;
+  }
+
+  .admin-page .calendar-day-chip {
+    display: none;
+  }
+
+  .admin-page .calendar-more-events {
+    right: 3px;
+    bottom: 3px;
+    padding: 2px 4px;
+    font-size: 0.55rem;
+  }
+
+  .admin-page .shopping-card,
+  .admin-page .notification-card {
+    padding: 0;
+    border-radius: 18px;
+  }
+
+  .admin-page .event-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .admin-page .empty-admin-box,
+  .admin-page .empty-state,
+  .admin-page .event-empty,
+  .admin-page .notifications-empty,
+  .admin-page .shopping-empty {
+    min-height: 180px;
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-page *,
+  .admin-page *::before,
+  .admin-page *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,567 @@
+.admin-page.login-view {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 20px;
+  overflow: hidden;
+  background: var(--page-gradient);
+  box-sizing: border-box;
+}
+
+.admin-page.login-view,
+.admin-page.login-view *,
+.admin-page.login-view *::before,
+.admin-page.login-view *::after {
+  box-sizing: border-box;
+}
+
+.admin-page.login-view .admin-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  animation: adminBgFade 1.2s ease both;
+}
+
+.admin-page.login-view .admin-background .liquid-ether-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.admin-page.login-view .admin-background canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.admin-page.login-view .login-card {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 430px;
+  padding: 42px 38px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  border-radius: 34px;
+  background: var(--glass-background);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-large);
+  text-align: center;
+  animation: adminCardEnter 0.8s ease both;
+  transition: transform 0.35s ease, box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.admin-page.login-view .login-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-large);
+}
+
+.admin-page.login-view .login-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--text-white, #fff) 55%, transparent),
+    color-mix(in srgb, var(--primary) 35%, transparent),
+    color-mix(in srgb, var(--text-white, #fff) 8%, transparent)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.admin-page.login-view .login-card::after {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: -120px;
+  z-index: 0;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--text-white, #fff) 20%, transparent),
+    transparent 70%
+  );
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.admin-page.login-view .login-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.admin-page.login-view .login-card .back-button {
+  align-self: stretch;
+  width: 100%;
+  min-height: 46px;
+  margin-bottom: 6px;
+  padding: 12px 18px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  background: var(--glass-background);
+  color: var(--text-white, #fff);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  transition: background 0.25s ease, border-color 0.25s ease,
+    transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.admin-page.login-view .login-card .back-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  background: var(--glass-hover);
+  box-shadow: var(--shadow-theme);
+}
+
+.admin-page.login-view .login-card .back-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.admin-page.login-view .admin-logo {
+  display: block;
+  flex: 0 0 auto;
+  width: 130px;
+  height: 130px;
+  margin: 6px auto 10px;
+  padding: 12px;
+  border: 3px solid var(--primary);
+  border-radius: 50%;
+  background: var(--logo-background);
+  object-fit: contain;
+  box-shadow: var(--logo-shadow);
+  animation: adminLogoPulse 4s ease-in-out infinite;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.admin-page.login-view .admin-logo:hover {
+  transform: rotate(-2deg) scale(1.03);
+}
+
+.admin-page.login-view .login-card h1 {
+  margin: 0;
+  max-width: 100%;
+  background: var(--title-gradient);
+  background-size: 250% auto;
+  background-position: 200% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  overflow-wrap: anywhere;
+  animation: adminMetalShine 5s linear infinite, adminTitleAppear 0.9s ease both;
+}
+
+.admin-page.login-view .login-card p {
+  margin: 0;
+  max-width: 100%;
+  color: var(--text-on-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.admin-page.login-view .login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  min-width: 0;
+}
+
+.admin-page.login-view .login-card input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 54px;
+  padding: 16px 18px;
+  border: 2px solid var(--input-border);
+  border-radius: 18px;
+  outline: none;
+  background: var(--input-background);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  caret-color: var(--primary);
+  transition: border-color 0.25s ease, background 0.25s ease,
+    transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.admin-page.login-view .login-card input::placeholder {
+  color: var(--input-placeholder);
+  font-weight: 600;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.admin-page.login-view .login-card input:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.admin-page.login-view .login-card input:focus {
+  transform: translateY(-2px);
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--input-focus) 20%, transparent),
+    var(--shadow-theme);
+}
+
+.admin-page.login-view .login-card input:focus::placeholder {
+  opacity: 0.45;
+}
+
+.admin-page.login-view .login-card input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.admin-page.login-view .login-card .admin-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 8px;
+  padding: 16px;
+  overflow: hidden;
+  border: none;
+  border-radius: 18px;
+  background: var(--header-gradient);
+  color: var(--text-white, #fff);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.25;
+  cursor: pointer;
+  box-shadow: var(--shadow-theme);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease,
+    filter 0.25s ease;
+}
+
+.admin-page.login-view .login-card .admin-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-large);
+  filter: brightness(1.06);
+}
+
+.admin-page.login-view .login-card .admin-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.admin-page.login-view .login-card .admin-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+  box-shadow: var(--shadow-theme);
+}
+
+.admin-page.login-view .login-card .admin-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+}
+
+.admin-page.login-view .login-card .admin-button:hover:not(:disabled)::before {
+  animation: adminButtonShine 0.8s ease;
+}
+
+.admin-page.login-view .admin-error {
+  width: 100%;
+  margin-top: 4px;
+  padding: 14px;
+  border: 1px solid var(--danger);
+  border-radius: 16px;
+  background: var(--danger-background);
+  color: var(--text-white, #fff);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: anywhere;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+.admin-page.login-view .login-card input,
+.admin-page.login-view .login-card .admin-button,
+.admin-page.login-view .login-card .back-button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.admin-page.login-view .login-card input:focus-visible,
+.admin-page.login-view .login-card .admin-button:focus-visible,
+.admin-page.login-view .login-card .back-button:focus-visible {
+  outline: 3px solid var(--input-focus, var(--primary));
+  outline-offset: 3px;
+}
+
+@keyframes adminCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes adminLogoPulse {
+  0%,
+  100% {
+    box-shadow: var(--logo-shadow),
+      0 0 0 8px color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+
+  50% {
+    box-shadow: var(--logo-shadow),
+      0 0 0 15px color-mix(in srgb, var(--primary) 16%, transparent);
+  }
+}
+
+@keyframes adminMetalShine {
+  from {
+    background-position: 200% center;
+  }
+
+  to {
+    background-position: -200% center;
+  }
+}
+
+@keyframes adminTitleAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes adminButtonShine {
+  from {
+    left: -130%;
+  }
+
+  to {
+    left: 170%;
+  }
+}
+
+@keyframes adminBgFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1200px) {
+  .admin-page.login-view .login-card {
+    max-width: 460px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-page.login-view {
+    padding: 20px;
+  }
+
+  .admin-page.login-view .login-card {
+    max-width: 430px;
+    padding: 36px 30px;
+    border-radius: 30px;
+  }
+
+  .admin-page.login-view .login-card h1 {
+    font-size: 34px;
+  }
+
+  .admin-page.login-view .admin-logo {
+    width: 115px;
+    height: 115px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-page.login-view {
+    padding: 15px;
+  }
+
+  .admin-page.login-view .login-card {
+    gap: 14px;
+    max-width: 100%;
+    padding: 30px 22px;
+    border-radius: 28px;
+  }
+
+  .admin-page.login-view .login-card::before {
+    border-radius: inherit;
+  }
+
+  .admin-page.login-view .admin-logo {
+    width: 100px;
+    height: 100px;
+    margin: 4px auto 8px;
+    padding: 10px;
+  }
+
+  .admin-page.login-view .login-card h1 {
+    font-size: 30px;
+    letter-spacing: -1px;
+  }
+
+  .admin-page.login-view .login-card p {
+    font-size: 15px;
+  }
+
+  .admin-page.login-view .login-card input {
+    min-height: 52px;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 16px;
+  }
+
+  .admin-page.login-view .login-card .admin-button {
+    min-height: 52px;
+    padding: 15px;
+    border-radius: 16px;
+    font-size: 16px;
+  }
+
+  .admin-page.login-view .login-card .back-button {
+    min-height: 46px;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .admin-page.login-view .admin-error {
+    padding: 12px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .admin-page.login-view {
+    padding: 12px;
+  }
+
+  .admin-page.login-view .login-card {
+    gap: 12px;
+    padding: 24px 16px;
+    border-radius: 24px;
+  }
+
+  .admin-page.login-view .admin-logo {
+    width: 88px;
+    height: 88px;
+  }
+
+  .admin-page.login-view .login-card h1 {
+    font-size: 26px;
+  }
+
+  .admin-page.login-view .login-card p {
+    font-size: 14px;
+  }
+}
+
+@media (max-height: 650px) and (min-width: 481px) {
+  .admin-page.login-view {
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .admin-page.login-view .login-card {
+    margin: auto;
+    padding-top: 26px;
+    padding-bottom: 26px;
+  }
+
+  .admin-page.login-view .admin-logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-page.login-view .admin-background,
+  .admin-page.login-view .login-card,
+  .admin-page.login-view .admin-logo,
+  .admin-page.login-view .login-card h1,
+  .admin-page.login-view .login-card .admin-button::before {
+    animation: none !important;
+  }
+
+  .admin-page.login-view .login-card,
+  .admin-page.login-view .admin-logo,
+  .admin-page.login-view .login-card input,
+  .admin-page.login-view .login-card .admin-button,
+  .admin-page.login-view .login-card .back-button {
+    transition: none !important;
+  }
+
+  .admin-page.login-view .login-card:hover,
+  .admin-page.login-view .admin-logo:hover,
+  .admin-page.login-view .login-card input:focus,
+  .admin-page.login-view .login-card .admin-button:hover,
+  .admin-page.login-view .login-card .back-button:hover {
+    transform: none !important;
+  }
+}

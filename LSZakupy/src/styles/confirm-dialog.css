@@ -1,0 +1,357 @@
+.ls-confirm-overlay,
+.ls-confirm-overlay * {
+  box-sizing: border-box;
+}
+
+.ls-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgba(5, 5, 7, 0.78);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  animation: lsConfirmFadeIn 0.2s ease both;
+}
+
+.ls-confirm-dialog {
+  --confirm-accent: var(--accent, #b5c97a);
+  --confirm-surface: color-mix(in srgb, var(--primary, #38251f) 18%, #211d1a);
+  --confirm-border: color-mix(in srgb, var(--accent, #b5c97a) 20%, #49413a);
+  --confirm-text: #fff8f2;
+  --confirm-muted: #cfc4bd;
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+  padding: 26px;
+  overflow: hidden;
+  border: 1px solid var(--confirm-border);
+  border-radius: 22px;
+  background: var(--confirm-surface);
+  background-image: none;
+  color: var(--confirm-text);
+  font-family: inherit;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.025);
+  animation: lsConfirmSlideIn 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.ls-confirm-dialog::before,
+.ls-confirm-dialog::after {
+  content: none;
+  display: none;
+}
+
+.ls-confirm-danger {
+  --confirm-action: #d65b61;
+  --confirm-action-hover: #e46b70;
+  --confirm-icon-bg: rgba(214, 91, 97, 0.12);
+  --confirm-icon-border: rgba(214, 91, 97, 0.3);
+}
+
+.ls-confirm-warning {
+  --confirm-action: #d6a34e;
+  --confirm-action-hover: #e2b461;
+  --confirm-icon-bg: rgba(214, 163, 78, 0.12);
+  --confirm-icon-border: rgba(214, 163, 78, 0.3);
+}
+
+.ls-confirm-info {
+  --confirm-action: #5c91d6;
+  --confirm-action-hover: #70a4e7;
+  --confirm-icon-bg: rgba(92, 145, 214, 0.12);
+  --confirm-icon-border: rgba(92, 145, 214, 0.3);
+}
+
+.ls-confirm-success {
+  --confirm-action: #5caa7a;
+  --confirm-action-hover: #70bc8c;
+  --confirm-icon-bg: rgba(92, 170, 122, 0.12);
+  --confirm-icon-border: rgba(92, 170, 122, 0.3);
+}
+
+.ls-confirm-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ls-confirm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  border: 1px solid var(--confirm-icon-border);
+  border-radius: 16px;
+  background: var(--confirm-icon-bg);
+  color: var(--confirm-action);
+}
+
+.ls-confirm-icon svg {
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+
+.ls-confirm-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #e5dcd5;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.ls-confirm-close svg {
+  width: 17px;
+  height: 17px;
+}
+
+.ls-confirm-close:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.ls-confirm-content {
+  min-width: 0;
+  margin-bottom: 26px;
+}
+
+.ls-confirm-title {
+  margin: 0 0 10px;
+  color: var(--confirm-text);
+  font-size: clamp(1.3rem, 3vw, 1.55rem);
+  font-weight: 850;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  overflow-wrap: anywhere;
+}
+
+.ls-confirm-description {
+  color: var(--confirm-muted);
+  font-size: 0.92rem;
+  font-weight: 450;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.ls-confirm-description p {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.ls-confirm-description p + p {
+  margin-top: 10px;
+}
+
+.ls-confirm-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 100%;
+}
+
+.ls-confirm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ls-confirm-cancel {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.055);
+  color: #f7eee8;
+}
+
+.ls-confirm-cancel:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.ls-confirm-submit {
+  border-color: var(--confirm-action);
+  background: var(--confirm-action);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.ls-confirm-submit:hover:not(:disabled) {
+  border-color: var(--confirm-action-hover);
+  background: var(--confirm-action-hover);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.ls-confirm-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ls-confirm-button:disabled,
+.ls-confirm-close:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ls-confirm-button:focus-visible,
+.ls-confirm-close:focus-visible {
+  outline: 2px solid var(--confirm-accent);
+  outline-offset: 3px;
+}
+
+.ls-confirm-spinner {
+  display: inline-block;
+  flex: 0 0 15px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: lsConfirmSpin 0.7s linear infinite;
+}
+
+@keyframes lsConfirmFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lsConfirmSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes lsConfirmSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .ls-confirm-overlay {
+    align-items: center;
+    padding: 14px;
+  }
+
+  .ls-confirm-dialog {
+    max-width: 100%;
+    padding: 21px;
+    border-radius: 18px;
+  }
+
+  .ls-confirm-top {
+    margin-bottom: 18px;
+  }
+
+  .ls-confirm-icon {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+
+  .ls-confirm-icon svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .ls-confirm-title {
+    font-size: 1.3rem;
+  }
+
+  .ls-confirm-description {
+    font-size: 0.88rem;
+  }
+
+  .ls-confirm-content {
+    margin-bottom: 22px;
+  }
+
+  .ls-confirm-actions {
+    gap: 8px;
+  }
+
+  .ls-confirm-button {
+    min-height: 45px;
+    padding: 11px 10px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .ls-confirm-dialog {
+    padding: 17px;
+  }
+
+  .ls-confirm-title {
+    font-size: 1.18rem;
+  }
+
+  .ls-confirm-button {
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ls-confirm-overlay,
+  .ls-confirm-dialog,
+  .ls-confirm-spinner {
+    animation: none;
+  }
+
+  .ls-confirm-button,
+  .ls-confirm-close {
+    transition: none;
+  }
+}
